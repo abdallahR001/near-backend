@@ -1,0 +1,24 @@
+# Visual Studio / .NET
+bin/
+obj/
+*.user
+*.suo
+*.vs/
+*.vscode/
+*.nupkg
+*.log
+*.db
+*.DS_Store
+
+# Environment files
+.env
+
+# EF Core Migrations (لو عايز ممكن تشيلها لو عايز ترفعها)
+Migrations/
+
+# Rider / JetBrains
+.idea/
+
+# Optional: temporary files
+*.tmp
+*.bak
