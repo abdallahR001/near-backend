@@ -25,6 +25,9 @@ namespace Backend.Data.Models
         public ICollection<Followers> Followers { get; set; } = new List<Followers>();
 
         public ICollection<Followers> Following { get; set; } = new List<Followers>();
+
+        public ICollection<Likes> Likes { get; set; }
+        public ICollection<Comments> Comments { get; set; }
 }
 
     public enum Gender{
