@@ -18,7 +18,7 @@ namespace Backend.Data.Models
         public Gender Gender { get; set; }
         public string? Location { get; set; }
         public uint FollowersCount { get; set; }
-        public uint FollowingCount { get; set; }
+        public uint FollowingCount { get; set; } 
         public uint PostsCount { get; set; }
         public DateTime CreatedAt { get; set; }
         public List<Post>? Posts { get; set; }
@@ -26,9 +26,9 @@ namespace Backend.Data.Models
 
         public ICollection<Followers> Following { get; set; } = new List<Followers>();
 
-        public ICollection<Likes> Likes { get; set; }
-        public ICollection<Comments> Comments { get; set; }
-}
+        public ICollection<Likes> Likes { get; set; } = new List<Likes>();
+        public ICollection<Comments> Comments { get; set; } = new List<Comments>();
+    }
 
     public enum Gender{
         Male,
