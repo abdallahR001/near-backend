@@ -17,5 +17,6 @@ namespace Backend.Data.Models
         public List<PostAttachment>? PostAttachments { get; set; }
         public ICollection<Likes> Likes { get; set; }
         public ICollection<Comments> Comments { get; set; }
+        public ICollection<PostCategory> PostCategories { get; set; }
     }
 }

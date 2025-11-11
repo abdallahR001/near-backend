@@ -18,7 +18,7 @@ namespace Backend.JWT
         {
             DotEnv.Load();
         }
-        public static string GenerateAccessToken(User user)
+        public static string GenerateAccessToken(Guid userId,string email)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JWT_KEY")));
 
@@ -26,9 +26,9 @@ namespace Backend.JWT
 
             var claims = new[]
             {
-                new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
+                new Claim(ClaimTypes.NameIdentifier,userId.ToString()),
                 new Claim(ClaimTypes.Role, "user"),
-                new Claim(ClaimTypes.Email,user.Email)
+                new Claim(ClaimTypes.Email,email)
             };
 
             var token = new JwtSecurityToken(

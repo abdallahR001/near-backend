@@ -17,6 +17,10 @@ namespace Backend.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<User>()
+            .HasIndex(u => u.Email)
+            .IsUnique();
+
+            modelBuilder.Entity<User>()
             .HasMany(u => u.Posts)
             .WithOne(p => p.User)
             .HasForeignKey(p => p.UserId)
@@ -69,6 +73,38 @@ namespace Backend.Data
             .WithMany(u => u.Comments)
             .HasForeignKey(c => c.UserId)
             .OnDelete(DeleteBehavior.Restrict);
+
+            
+            modelBuilder.Entity<UserCategory>()
+                .HasKey(uc => new { uc.UserId, uc.CategoryId });
+
+            modelBuilder.Entity<UserCategory>()
+                .HasOne(uc => uc.User)
+                .WithMany(u => u.UserCategories)
+                .HasForeignKey(uc => uc.UserId)
+                .OnDelete(DeleteBehavior.Cascade); 
+
+            modelBuilder.Entity<UserCategory>()
+                .HasOne(uc => uc.Category)
+                .WithMany(c => c.UserCategories)
+                .HasForeignKey(uc => uc.CategoryId)
+                .OnDelete(DeleteBehavior.Restrict); 
+
+            
+            modelBuilder.Entity<PostCategory>()
+                .HasKey(pc => new { pc.PostId, pc.CategoryId });
+
+            modelBuilder.Entity<PostCategory>()
+                .HasOne(pc => pc.Post)
+                .WithMany(p => p.PostCategories)
+                .HasForeignKey(pc => pc.PostId)
+                .OnDelete(DeleteBehavior.Cascade); 
+
+            modelBuilder.Entity<PostCategory>()
+                .HasOne(pc => pc.Category)
+                .WithMany(c => c.PostCategories)
+                .HasForeignKey(pc => pc.CategoryId)
+                .OnDelete(DeleteBehavior.Restrict); 
         }
 
         public DbSet<User>? Users { get; set; }
@@ -77,5 +113,8 @@ namespace Backend.Data
         public DbSet<Followers>? Followers { get; set; }
         public DbSet<Likes>? Likes { get; set; }
         public DbSet<Comments>? Comments { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<UserCategory> UserCategories { get; set; }
+        public DbSet<PostCategory> PostCategories { get; set; }
     }
 }

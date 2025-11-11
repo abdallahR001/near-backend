@@ -28,6 +28,7 @@ namespace Backend.Data.Models
 
         public ICollection<Likes> Likes { get; set; } = new List<Likes>();
         public ICollection<Comments> Comments { get; set; } = new List<Comments>();
+        public ICollection<UserCategory> UserCategories { get; set; }
     }
 
     public enum Gender{
